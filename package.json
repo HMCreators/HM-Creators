@@ -1,4 +1,9 @@
 {
+  "name": "your_project_name",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "flutter build web"
+  },
   "dependencies": {
     "firebase": "^10.8.1"
   }
