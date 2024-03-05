@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hmcreators/Utils/Buttons.dart';
+import 'package:hmcreators/constants/color.dart';
 import 'package:hmcreators/pages/About_Us_Page.dart';
 import 'package:hmcreators/pages/Contact_Us_Page.dart';
 import 'package:hmcreators/pages/Home_Page.dart';
@@ -41,47 +42,57 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        backgroundColor: themepeach,
+        appBar: AppBar(
+            title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            NavButton(
-              text: "Home",
-              onPressed: () {
-                setState(() {
-                  _selectedIndex = 0;
-                });
-              },
+            Image.asset(
+              "logo.png",
+              width: 100,
+              height: 70,
             ),
-            NavButton(
-              text: "About",
-              onPressed: () {
-                setState(() {
-                  _selectedIndex = 1;
-                });
-              },
-            ),
-            NavButton(
-              text: "Service",
-              onPressed: () {
-                setState(() {
-                  _selectedIndex = 2;
-                });
-              },
-            ),
-            NavButton(
-              text: "Contact",
-              onPressed: () {
-                setState(() {
-                  _selectedIndex = 3;
-                });
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                NavButton(
+                  text: "Home",
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 0;
+                    });
+                  },
+                ),
+                NavButton(
+                  text: "About",
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 1;
+                    });
+                  },
+                ),
+                NavButton(
+                  text: "Service",
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 2;
+                    });
+                  },
+                ),
+                NavButton(
+                  text: "Contact",
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 3;
+                    });
+                  },
+                ),
+              ],
             ),
           ],
-        ),
-      ),
-      body: _pages[_selectedIndex],
-    );
+        )),
+        body:  _pages[_selectedIndex],
+        );
   }
 }

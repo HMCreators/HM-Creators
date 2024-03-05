@@ -13,7 +13,7 @@ Widget NormalText(String text) {
 Widget BoldText(String text) {
   return Text(
     text,
-    style: GoogleFonts.roboto(
+    style: GoogleFonts.openSans(
         fontWeight: FontWeight.w600, fontSize: 22, color: themebrown),
   );
 }
@@ -21,7 +21,7 @@ Widget BoldText(String text) {
 Widget ExtraBoldText(String text) {
   return Text(
     text,
-    style: GoogleFonts.roboto(
+    style: GoogleFonts.openSans(
         fontWeight: FontWeight.w800, fontSize: 26, color: themebrown),
   );
 }
@@ -29,7 +29,7 @@ Widget ExtraBoldText(String text) {
 Widget ExtraLightText(String text) {
   return Text(
     text,
-    style: GoogleFonts.roboto(
+    style: GoogleFonts.openSans(
         fontWeight: FontWeight.w200, fontSize: 14, color: themebrown),
   );
 }
@@ -37,7 +37,7 @@ Widget ExtraLightText(String text) {
 Widget LightText(String text) {
   return Text(
     text,
-    style: GoogleFonts.roboto(
+    style: GoogleFonts.openSans(
         fontWeight: FontWeight.w400, fontSize: 16, color: themebrown),
   );
 }

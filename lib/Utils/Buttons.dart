@@ -10,14 +10,16 @@ class NavButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPressed,
-      child: BoldText(
-        text,
-      ),
-      style: ButtonStyle(
-        overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
-      ),
-    );
+    return Padding(
+        padding: const EdgeInsets.only(left: 15, right: 15),
+        child: TextButton(
+            onPressed: onPressed,
+            style: ButtonStyle(
+              overlayColor:
+                  MaterialStateProperty.all<Color>(Colors.transparent),
+            ),
+            child: NormalText(
+              text,
+            )));
   }
 }

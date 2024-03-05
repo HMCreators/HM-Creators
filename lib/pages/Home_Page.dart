@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hmcreators/constants/color.dart';
 
 Widget HomePageWidget() {
   return Container(
@@ -6,39 +8,41 @@ Widget HomePageWidget() {
   );
 }
 
-
 class BackgroundImageWithText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          // Background Image
-          Positioned.fill(
-            child: Image.asset(
-              'background.png', // Replace 'assets/background_image.jpg' with your image path
-              fit: BoxFit.fitHeight,
-            ),
-          ),
-          // Colored Container
-          // Positioned.fill(
-          //   child: Container(
-          //     color: Color(0xFFE0CCBE),
-          //   ),
-          // ),
-          // Text Overlay
-          Center(
-            child: Text(
-              'HM',
-              style: TextStyle(
-                fontSize: 200, // Adjust font size as needed
-                fontFamily: 'TransparentFont', // Use custom font with transparent letters
-                color: Colors.transparent, // Make text transparent
-              ),
-            ),
-          ),
-        ],
-      ),
+      body: Stack(fit: StackFit.expand, children: [
+        Image.asset(
+          'background.png',
+          fit: BoxFit.cover,
+        ),
+        Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.transparent, Colors.white],
+                  stops: [0, .9])),
+        ),
+        Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+
+                const SizedBox(
+                  height: 32,
+                ),
+              ],
+            )),
+        Center(
+          child: Text('',
+              style: GoogleFonts.openSans(fontSize: 500, color: themepeach)),
+        ),
+      ]),
     );
   }
 }
