@@ -1,7 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
-Widget ServicesPageWidget() {
-  return Container(
-    child: Text("ServicePage"),
-  );
+import '../constants/font.dart';
+
+class ServicesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(
+      child: BoldText("Services"),
+    );
+  }
 }

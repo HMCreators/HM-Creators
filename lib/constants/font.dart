@@ -41,3 +41,18 @@ Widget LightText(String text) {
         fontWeight: FontWeight.w400, fontSize: 16, color: themebrown),
   );
 }
+
+Widget ExtraLargeTitle(String text) {
+  return Text(
+    text,
+    style: GoogleFonts.openSans(
+        fontWeight: FontWeight.w800, fontSize: 45, color: themebrown),
+  );
+}
+Widget ServicesTextButton(String text) {
+  return Text(
+    text,
+    style: GoogleFonts.openSans(decoration:   TextDecoration.underline,
+        fontWeight: FontWeight.w800, fontSize: 20, color: themebrown),
+  );
+}

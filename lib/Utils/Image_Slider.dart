@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class ImageSlider extends StatefulWidget {
@@ -14,28 +15,36 @@ class _ImageSliderState extends State<ImageSlider> {
     Image.asset("background.png"),
   ];
 
+
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.9);
+    _pageController = PageController(viewportFraction: 0.8);
   }
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-        itemCount: images.length,
-        pageSnapping: true,
-        controller: _pageController,
-        onPageChanged: (page) {
-          setState(() {
-            // activePage = page;
-          });
-        },
-        itemBuilder: (context, pagePosition) {
-          return Container(
-            // margin: EdgeInsets.all(10),
-            child: images[pagePosition],
-          );
-        });
-  }
-}
+    Size size = MediaQuery.of(context).size;
+    return  Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          // Other widgets
+          CarouselSlider(
+            items: images,
+            options: CarouselOptions(
+              height: size.height*0.9, // Customize the height of the carousel
+              autoPlay: true, // Enable auto-play
+              enlargeCenterPage: true, // Increase the size of the center item
+              enableInfiniteScroll: true, // Enable infinite scroll
+              viewportFraction: 0.6,
+              autoPlayInterval: Duration(seconds: 1, milliseconds: 500),
+              onPageChanged: (index, reason) {
+                // Optional callback when the page changes
+                // You can use it to update any additional UI components
+              },
+            ),
+          ),
+          // Other widgets
+        ],
+    );
+  }}

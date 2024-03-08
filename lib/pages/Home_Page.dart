@@ -1,48 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:hmcreators/constants/color.dart';
+import 'package:hmcreators/constants/font.dart';
 
-Widget HomePageWidget() {
-  return Container(
-    child: BackgroundImageWithText(),
-  );
-}
+import '../Utils/Image_Slider.dart';
 
-class BackgroundImageWithText extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(fit: StackFit.expand, children: [
-        Image.asset(
-          'background.png',
-          fit: BoxFit.cover,
-        ),
-        Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.transparent, Colors.white],
-                  stops: [0, .9])),
-        ),
-        Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+//     Widget HomePageWidget() {
+      return SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ExtraLargeTitle(
+                          'Revolutionize your\nDesigns with\nHM Creators.',
+                        ),
+                        SizedBox(height: 20),
 
-                const SizedBox(
-                  height: 32,
-                ),
-              ],
-            )),
-        Center(
-          child: Text('',
-              style: GoogleFonts.openSans(fontSize: 500, color: themepeach)),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Expanded(
+                    flex: 7,
+                    child: ImageSlider(),
+                  ),
+                ],
+              ),
+            ),
+
+
+          ],
         ),
-      ]),
-    );
-  }
+      );
+    }
+  // }
 }
