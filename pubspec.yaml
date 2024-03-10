@@ -10,14 +10,15 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons:
-  carousel_slider:
-  firebase_core:
-  firebase:
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.1
+  carousel_slider:
+  firebase_core:
+  firebase:
 
 flutter:
   uses-material-design: true
