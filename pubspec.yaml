@@ -10,7 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons:
-  google_fonts: 6.1.0
   carousel_slider:
   firebase_core:
   firebase:

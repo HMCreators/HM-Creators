@@ -6,7 +6,7 @@ import 'package:hmcreators/constants/color.dart';
 Widget NormalText(String text) {
   return Text(
     text,
-    style: GoogleFonts.roboto(
+    style: TextStyle(
         fontWeight: FontWeight.w400, fontSize: 18, color: themebrown),
   );
 }
@@ -14,7 +14,7 @@ Widget NormalText(String text) {
 Widget BoldText(String text) {
   return Text(
     text,
-    style: GoogleFonts.openSans(
+    style: TextStyle(
         fontWeight: FontWeight.w600, fontSize: 22, color: themebrown),
   );
 }
@@ -22,7 +22,7 @@ Widget BoldText(String text) {
 Widget ExtraBoldText(String text) {
   return Text(
     text,
-    style: GoogleFonts.openSans(
+    style: TextStyle(
         fontWeight: FontWeight.w800, fontSize: 26, color: themebrown),
   );
 }
@@ -30,7 +30,7 @@ Widget ExtraBoldText(String text) {
 Widget ExtraLightText(String text) {
   return Text(
     text,
-    style: GoogleFonts.openSans(
+    style: TextStyle(
         fontWeight: FontWeight.w200, fontSize: 14, color: themebrown),
   );
 }
@@ -38,7 +38,7 @@ Widget ExtraLightText(String text) {
 Widget LightText(String text) {
   return Text(
     text,
-    style: GoogleFonts.openSans(
+    style: TextStyle(
         fontWeight: FontWeight.w400, fontSize: 16, color: themebrown),
   );
 }
@@ -46,14 +46,14 @@ Widget LightText(String text) {
 Widget ExtraLargeTitle(String text) {
   return Text(
     text,textAlign: TextAlign.center,
-    style: GoogleFonts.openSans(
+    style: TextStyle(
         fontWeight: FontWeight.w800, fontSize: 45, color: themewhite),
   );
 }
 Widget ServicesTextButton(String text) {
   return Text(
     text,
-    style: GoogleFonts.openSans(decoration:   TextDecoration.underline,
+    style: TextStyle(decoration:   TextDecoration.underline,
         fontWeight: FontWeight.w800, fontSize: 20, color: themebrown),
   );
 }
