@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:hmcreators/constants/color.dart';
-
+import 'package:hmcreators/constants/themecolor.dart';
 Widget NormalText(String text) {
   return Text(
     text,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hmcreators/constants/color.dart';
-import 'package:hmcreators/constants/font.dart';
+import 'package:hmcreators/constants/textfont.dart';
+import 'package:hmcreators/constants/themecolor.dart';
 import 'package:hmcreators/pages/Home_Page.dart';
 
 import 'pages/About_Us_Page.dart';

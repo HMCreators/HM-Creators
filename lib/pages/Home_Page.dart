@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hmcreators/constants/font.dart';
+
+import 'package:hmcreators/constants/textfont.dart';
 import '../Utils/Image_Slider.dart';
 
 class HomePage extends StatelessWidget {

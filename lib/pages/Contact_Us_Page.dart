@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hmcreators/constants/textfont.dart';
 
-import '../constants/font.dart';
 
 class ContactPage extends StatelessWidget {
   @override

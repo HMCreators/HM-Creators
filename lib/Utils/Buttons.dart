@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hmcreators/constants/font.dart';
+import 'package:hmcreators/constants/textfont.dart';
 
 class NavButton extends StatelessWidget {
   final String text;
