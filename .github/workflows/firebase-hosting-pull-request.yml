@@ -19,10 +19,6 @@ jobs:
         run: flutter build web
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-      - uses: actions/checkout@v4
-      - run: npm ci && npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_HM_CREATORS_9A89D }}'
           projectId: hm-creators-9a89d
