@@ -1,5 +1,8 @@
 {
   "projects": {
     "default": "hm-creators-9a89d"
+    "build/web": "hm-creators-9a89d"
   }
+  "targets": {},
+  "etags": {}
 }
