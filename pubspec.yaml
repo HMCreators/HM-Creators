@@ -12,7 +12,8 @@ dependencies:
   cupertino_icons:
   google_fonts: 6.1.0
   carousel_slider:
-  firebase_auth_web:
+  firebase_core:
+  firebase:
 
 dev_dependencies:
   flutter_test:
