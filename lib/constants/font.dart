@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hmcreators/constants/color.dart';
 
 Widget NormalText(String text) {
