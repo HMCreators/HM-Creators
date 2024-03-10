@@ -42,9 +42,9 @@ class _ScrollableWebsiteState extends State<ScrollableWebsite> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: themepeach,
+      backgroundColor: themewhite,
       appBar: AppBar(
-          backgroundColor: themegrey,
+          backgroundColor: themewhite,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

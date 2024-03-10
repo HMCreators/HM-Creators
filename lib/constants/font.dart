@@ -44,9 +44,9 @@ Widget LightText(String text) {
 
 Widget ExtraLargeTitle(String text) {
   return Text(
-    text,
+    text,textAlign: TextAlign.center,
     style: GoogleFonts.openSans(
-        fontWeight: FontWeight.w800, fontSize: 45, color: themebrown),
+        fontWeight: FontWeight.w800, fontSize: 45, color: themewhite),
   );
 }
 Widget ServicesTextButton(String text) {
