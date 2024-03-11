@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:hmcreators/constants/textfont.dart';
 import '../Utils/Image_Slider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-//     Widget HomePageWidget() {
     return SingleChildScrollView(
       child: Stack(
         alignment: Alignment.center,
@@ -21,5 +19,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-// }
 }
