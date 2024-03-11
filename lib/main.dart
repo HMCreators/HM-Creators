@@ -27,12 +27,28 @@ class ScrollableWebsite extends StatefulWidget {
 }
 
 class _ScrollableWebsiteState extends State<ScrollableWebsite> {
+  ServiceItem selectedService = ServiceItem(
+    icon: Icons.work,
+    title: 'Default Service',
+    description: 'Default Service Description',
+    image: 'background.png',
+  );
+  final List<ServiceItem> services = List.generate(
+    10,
+    (index) => ServiceItem(
+      icon: Icons.work,
+      title: 'Service ${index + 1}',
+      description: 'Description of Service ${index + 1}',
+      image: 'background.png',
+    ),
+  );
+
   final ScrollController _scrollController = ScrollController();
 
   void _scrollToSection(int sectionIndex) {
     _scrollController.animateTo(
       MediaQuery.of(context).size.height * sectionIndex,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
   }
@@ -41,7 +57,7 @@ class _ScrollableWebsiteState extends State<ScrollableWebsite> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: themewhite,
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -69,8 +85,9 @@ class _ScrollableWebsiteState extends State<ScrollableWebsite> {
           children: [
             _buildHomePage(),
             _buildAboutUsPage(),
-            _buildSection('Services', themegrey),
-            _buildSection('Contact Us', themegrey),
+            _buildServicesWidget(),
+            if (selectedService != null) _buildServiceDetails(selectedService!),
+            ContactFormWidget(),
           ],
         ),
       ),
@@ -81,8 +98,12 @@ class _ScrollableWebsiteState extends State<ScrollableWebsite> {
     return InkWell(
       onTap: () => _scrollToSection(sectionIndex),
       child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: NormalText(title)),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 
@@ -101,49 +122,27 @@ class _ScrollableWebsiteState extends State<ScrollableWebsite> {
               width: MediaQuery.of(context).size.width,
               child: ClipRRect(
                 child: Image.asset(
+                  "background.png", // Assuming your background image file path
                   colorBlendMode: BlendMode.darken,
-                  "background.png",
                   fit: BoxFit.fill,
                 ),
               ),
             )
-            // Assuming your background image file path
           ],
         ),
-        const Text(
+        ExtraLargeTitle(
           'Revolutionize your Designs with\nHM Creators',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 50,
-            fontWeight: FontWeight.bold,
-          ),
         ),
       ],
     );
   }
 
-  Widget _buildSection(String title, Color color) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      color: color,
-      child: Center(
-        child: Text(
-          title,
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildAboutUsPage() {
+    bool isExpanded = true;
+
     return Container(
-      padding: EdgeInsets.all(20.0),
-      color: Colors.grey[200], // Background color for the About Us section
+      padding: const EdgeInsets.all(20.0),
+      color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -154,164 +153,284 @@ class _ScrollableWebsiteState extends State<ScrollableWebsite> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 20.0),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Image.asset(
-                  'Photos.jpg', // Replace with your image file path
-                  fit: BoxFit.cover,
-                  height: 150.0,
-                ),
+          const SizedBox(height: 20.0),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isExpanded = !isExpanded;
+              });
+            },
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              height: isExpanded ? MediaQuery.of(context).size.height : 150.0,
+              width: isExpanded
+                  ? MediaQuery.of(context).size.width
+                  : double.infinity,
+              child: Card(
+                elevation: 5,
+                child: isExpanded
+                    ? Column(
+                        children: [
+                          Expanded(
+                            child: Image.asset(
+                              'Photos.jpg',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Detailed Description Here...',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Image.asset(
+                              'Photos.jpg',
+                              fit: BoxFit.cover,
+                              height: 150.0,
+                            ),
+                          ),
+                          const SizedBox(width: 20.0),
+                          const Expanded(
+                            child: Text(
+                              'Short Description Here...',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                        ],
+                      ),
               ),
-              SizedBox(width: 20.0),
-              const Expanded(
-                child: Text(
-                  'Description 1',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-          SizedBox(height: 20.0),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Text(
-                  'Description 2',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Image.asset(
-                  'Photos.jpg', // Replace with your image file path
-                  fit: BoxFit.cover,
-                  height: 150.0,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Image.asset(
-                  'Photos.jpg', // Replace with your image file path
-                  fit: BoxFit.cover,
-                  height: 150.0,
-                ),
-              ),
-              SizedBox(width: 20.0),
-              const Expanded(
-                child: Text(
-                  'Description 1',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 20.0),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Text(
-                  'Description 2',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Image.asset(
-                  'Photos.jpg', // Replace with your image file path
-                  fit: BoxFit.cover,
-                  height: 150.0,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Image.asset(
-                  'Photos.jpg', // Replace with your image file path
-                  fit: BoxFit.cover,
-                  height: 150.0,
-                ),
-              ),
-              SizedBox(width: 20.0),
-              const Expanded(
-                child: Text(
-                  'Description 1',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 20.0),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Text(
-                  'Description 2',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Image.asset(
-                  'Photos.jpg', // Replace with your image file path
-                  fit: BoxFit.cover,
-                  height: 150.0,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 20.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildImage(
-                'Photos.jpg',
-              ),
-              // Replace with your image file path
-              _buildImage(
-                'Photos.jpg',
-              ),
-              // Replace with your image file path
-              _buildImage(
-                'Photos.jpg',
-              ),
-              // Replace with your image file path
+          const SizedBox(height: 20.0),
+        ],
+      ),
+    );
+  }
 
-            ],
+  Widget _buildServicesWidget() {
+    return Container(
+      color: Colors.brown,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            'Our Services',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 20.0),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.all(20.0),
+            child: GridView.count(
+              crossAxisCount: 5,
+              crossAxisSpacing: 5,
+              mainAxisSpacing: 2,
+              shrinkWrap: true,
+              children: services.map((service) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedService = service;
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border:
+                          const Border.fromBorderSide(BorderSide(color: Colors.grey)),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(service.icon),
+                        const SizedBox(height: 10),
+                        Text(
+                          service.title,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildImage(String imagePath) {
-    return Expanded(
-      child: Image.asset(
-        imagePath,
-        fit: BoxFit.cover,
-        height: 150.0,
+  Widget _buildServiceDetails(ServiceItem service) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                service.title,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                service.description,
+                style: const TextStyle(fontSize: 16),
+              ),
+            ],
+          ),
+          Image.asset(
+            service.image,
+            // Assuming your image file path
+          ),
+        ],
       ),
     );
   }
+}
+
+class ContactFormWidget extends StatefulWidget {
+  @override
+  _ContactFormWidgetState createState() => _ContactFormWidgetState();
+}
+
+class _ContactFormWidgetState extends State<ContactFormWidget> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _contactNumberController =
+      TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _countryController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.brown),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: _buildTextField(_firstNameController, 'First Name'),
+                ),
+                const SizedBox(width: 10.0),
+                Expanded(
+                  child: _buildTextField(_lastNameController, 'Last Name'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10.0),
+            _buildTextField(_emailController, 'Email'),
+            const SizedBox(height: 10.0),
+            _buildTextField(_contactNumberController, 'Contact Number'),
+            const SizedBox(height: 10.0),
+            _buildTextField(_descriptionController, 'Description'),
+            const SizedBox(height: 10.0),
+            _buildTextField(_countryController, 'Country'),
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: _submitForm,
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField(TextEditingController controller, String placeholder) {
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+        hintText: placeholder,
+        border: const OutlineInputBorder(),
+      ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter $placeholder';
+        }
+        return null;
+      },
+    );
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      String firstName = _firstNameController.text;
+      String lastName = _lastNameController.text;
+      String email = _emailController.text;
+      String contactNumber = _contactNumberController.text;
+      String description = _descriptionController.text;
+      String country = _countryController.text;
+
+      print('First Name: $firstName');
+      print('Last Name: $lastName');
+      print('Email: $email');
+      print('Contact Number: $contactNumber');
+      print('Description: $description');
+      print('Country: $country');
+    }
+  }
+}
+
+class ServiceItem {
+  final IconData icon;
+  final String title;
+  final String description;
+  final String image;
+
+  ServiceItem({
+    required this.icon,
+    required this.title,
+    required this.description,
+    required this.image,
+  });
 }
