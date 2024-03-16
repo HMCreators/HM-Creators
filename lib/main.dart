@@ -33,15 +33,38 @@ class _ScrollableWebsiteState extends State<ScrollableWebsite> {
     description: 'Default Service Description',
     image: 'background.png',
   );
-  final List<ServiceItem> services = List.generate(
-    10,
-    (index) => ServiceItem(
+  final List<ServiceItem> services = [
+    ServiceItem(
       icon: Icons.work,
-      title: 'Service ${index + 1}',
-      description: 'Description of Service ${index + 1}',
-      image: 'background.png',
+      title: 'Service 1',
+      description: 'Description of Service',
+      image: 'autocad.png',
     ),
-  );
+    ServiceItem(
+      icon: Icons.work,
+      title: 'Service 2',
+      description: 'Description of Service',
+      image: 'designs.png',
+    ),
+    ServiceItem(
+      icon: Icons.work,
+      title: 'Service 3',
+      description: 'Description of Service',
+      image: '3d_design.png',
+    ),
+    ServiceItem(
+      icon: Icons.work,
+      title: 'Service 4',
+      description: 'Description of Service',
+      image: '3d_render.png',
+    ),
+    ServiceItem(
+      icon: Icons.work,
+      title: 'Service 5',
+      description: 'Description of Service',
+      image: 'autocad.png',
+    ),
+  ];
 
   final ScrollController _scrollController = ScrollController();
 
@@ -99,9 +122,8 @@ class _ScrollableWebsiteState extends State<ScrollableWebsite> {
       onTap: () => _scrollToSection(sectionIndex),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Text(
+        child: NormalText(
           title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -141,77 +163,92 @@ class _ScrollableWebsiteState extends State<ScrollableWebsite> {
     bool isExpanded = true;
 
     return Container(
-      padding: const EdgeInsets.all(20.0),
-      color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'About Us',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
+        padding: EdgeInsets.all(20.0),
+        color: Colors.white,
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ExtraBoldText(
+                      'Who we are',
+                    ),
+                    NormalText(
+                        "Partner with us for reliable support that empowers your business.\nOur dedicated team delivers seamless operations," +
+                            "enhanced efficiency, \nand peace of mind," +
+                            "allowing you to focus on what you do best."),
+                  ],
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: AssetImage("background.png"),
+                          fit: BoxFit.fill)),
+                )
+              ],
             ),
-          ),
-          const SizedBox(height: 20.0),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                isExpanded = !isExpanded;
-              });
-            },
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 500),
-              height: isExpanded ? MediaQuery.of(context).size.height : 150.0,
-              width: isExpanded
-                  ? MediaQuery.of(context).size.width
-                  : double.infinity,
-              child: Card(
-                elevation: 5,
-                child: isExpanded
-                    ? Column(
-                        children: [
-                          Expanded(
-                            child: Image.asset(
-                              'Photos.jpg',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Detailed Description Here...',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        ],
-                      )
-                    : Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Image.asset(
-                              'Photos.jpg',
-                              fit: BoxFit.cover,
-                              height: 150.0,
-                            ),
-                          ),
-                          const SizedBox(width: 20.0),
-                          const Expanded(
-                            child: Text(
-                              'Short Description Here...',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        ],
-                      ),
-              ),
+            SizedBox(
+              height: 20,
             ),
-          ),
-          const SizedBox(height: 20.0),
-        ],
-      ),
-    );
+            ExtraBoldText("Our Team"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset("logo.png",
+                        height: MediaQuery.of(context).size.height * 0.2),
+                    BoldText("Zarna Patel"),
+                    NormalText("CEO & Founder"),
+                    NormalText("Product Manager"),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset("logo.png",
+                        height: MediaQuery.of(context).size.height * 0.2),
+                    BoldText("Dhruman Rathod"),
+                    NormalText("Assitant Manager"),
+                    NormalText("Developer")
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset("logo.png",
+                        height: MediaQuery.of(context).size.height * 0.2),
+                    BoldText("Varis"),
+                    NormalText("Team Lead"),
+                    NormalText("Autocad Designer"),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset("logo.png",
+                        height: MediaQuery.of(context).size.height * 0.2),
+                    BoldText("Zarna Patel"),
+                    NormalText("Product Designer"),
+                    NormalText("Assitant Director")
+                  ],
+                )
+              ],
+            )
+          ],
+        ));
   }
 
   Widget _buildServicesWidget() {
@@ -233,20 +270,12 @@ class _ScrollableWebsiteState extends State<ScrollableWebsite> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: const Offset(0, 3),
-                ),
-              ],
             ),
             padding: const EdgeInsets.all(20.0),
             child: GridView.count(
               crossAxisCount: 5,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 2,
+              mainAxisSpacing: 15,
+              crossAxisSpacing: 15,
               shrinkWrap: true,
               children: services.map((service) {
                 return GestureDetector(
@@ -258,8 +287,8 @@ class _ScrollableWebsiteState extends State<ScrollableWebsite> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      border:
-                          const Border.fromBorderSide(BorderSide(color: Colors.grey)),
+                      border: const Border.fromBorderSide(
+                          BorderSide(color: Colors.grey)),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -425,7 +454,7 @@ class ServiceItem {
   final IconData icon;
   final String title;
   final String description;
-  final String image;
+  final String image; // Image path
 
   ServiceItem({
     required this.icon,
